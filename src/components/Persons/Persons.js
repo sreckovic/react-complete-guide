@@ -1,23 +1,26 @@
-import React, { PureComponent } from 'react';
+import React, { PureComponent } from "react";
 
-import Person from './Person/Person';
+import Person from "./Person/Person";
 
 class Persons extends PureComponent {
   constructor(props) {
     super(props);
-    console.log('[Persons.js] inside constructor\n', props);
+    console.log("[Persons.js] inside constructor\n", props);
   }
 
   componentWillMount() {
-    console.log('[Persons.js] inside componentWillMount()');
+    console.log("[Persons.js] inside componentWillMount()");
   }
 
   componentDidMount() {
-    console.log('[Persons.js] inside componentDidMount()');
+    console.log("[Persons.js] inside componentDidMount()");
   }
 
   componentWillReceiveProps(nextProps) {
-    console.log('[UPDATE Persons.js] inside componentWillReceiveProps()\n', nextProps);
+    console.log(
+      "[UPDATE Persons.js] inside componentWillReceiveProps()\n",
+      nextProps
+    );
   }
 
   /* Insted this check we can use PureComponent
@@ -29,25 +32,32 @@ class Persons extends PureComponent {
   */
 
   componentWillUpdate(nextProps, nextState) {
-    console.log('[UPDATE Persons.js] inside componentWillUpdate()\n', nextProps, nextState);
+    console.log(
+      "[UPDATE Persons.js] inside componentWillUpdate()\n",
+      nextProps,
+      nextState
+    );
   }
 
   componentDidUpdate() {
-    console.log('[UPDATE Persons.js] inside componentDidUpdate()');
+    console.log("[UPDATE Persons.js] inside componentDidUpdate()");
   }
 
   render() {
-    console.log('[Persons.js] inside render()');
+    console.log("[Persons.js] inside render()");
 
     return this.props.persons.map((person, index) => {
-      return <Person
-        deletePerson={() => this.props.clicked(index)}
-        name={person.name}
-        age ={person.age}
-        key={person.id}
-        changed={(event) => this.props.changed(event, person.id)} />
-      }
-    );
+      return (
+        <Person
+          deletePerson={() => this.props.clicked(index)}
+          name={person.name}
+          age={person.age}
+          key={person.id}
+          position={index}
+          changed={event => this.props.changed(event, person.id)}
+        />
+      );
+    });
   }
 }
 
